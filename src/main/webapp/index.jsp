@@ -7,7 +7,7 @@
 <title>Proyecto ASR new...</title>
 </head>
 <body>
-<h1>Ejemplo de Proyecto de ASR con Cloudant ahora con DevOps</h1>
+<h1>Ejemplo de Proyecto de ASR con Cloudant ahora CON DevOps</h1>
 <hr />
 <p>ZZZZZ Opciones <b>CLOUDANT o ZZZZZZ n IBM Cloud</b>:</p>
 <ul>
