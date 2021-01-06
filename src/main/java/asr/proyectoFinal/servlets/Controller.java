@@ -87,8 +87,8 @@ public class Controller extends HttpServlet {
 				
 			case "/reproducir":
 				String audio = request.getParameter("mensaje");
-				// String out1 = TextoToAudio.reproducirAudio("hola");
-				out.println("hola");
+				String out1 = TextoToAudio.reproducirAudio("hola");
+				out.println(out1);
 			break;		
 			
 			

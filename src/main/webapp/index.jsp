@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" 
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,7 +24,8 @@
 	  box-sizing: border-box;
 	}
 	 </style>
-	<script>
+	 
+	<script type="text/javascript">
 		function pulsado() 
 	    {  
 			
@@ -64,12 +66,25 @@
            			
        		});
 		}
+		
+		function pulsado4()
+		{
+			var dataEnvio = $("#idForm").serialize();
+			$.get('reproducir',dataEnvio, function(data3)
+				{
+				     alert(data3);
+					 out.println(data3);
+			         #('#audioName').src = data3;
+			         $('#audio').load();
+			         $('#audio').play(); 
+				});
+		}
 		function nombreUser()
 		{
 			
 			while(nombre==null ||nombre=="" )
 			{
-				var nombre = prompt("Cual es tu nombre?", "");
+				var nombre = prompt("Como te llamas?", "");
 				localStorage.setItem("nombre", nombre);
 				$("#mensaje").focus(); 
 				
@@ -79,7 +94,7 @@
     </script>
      
 </head>
-<body  onload="nombreUser();" style =" background-color:#d8f0fb">
+<body  onload="nombreUser();" style ="background-color:#d8f0fb">
 	<center>
 	<h1> Practica Final ASR </h1>
 	<h2>Ana Urbistondo y Alberto Colino</h2>
@@ -115,7 +130,11 @@
 		</ul>
 		 -->
 	
-
+	<div>
+		<audio controls id="audio" hidden="true">
+			<source id="audioName" type="audio/wav">
+		</audio>
+	</div>
 	
 </body>
 </html>
