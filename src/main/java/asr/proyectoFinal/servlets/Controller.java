@@ -26,11 +26,12 @@ import asr.proyectoFinal.dao.CloudantPalabraStore;
 import asr.proyectoFinal.dominio.Palabra;
 import asr.proyectoFinal.services.Traductor;
 import asr.proyectoFinal.services.AnalisisLP;
+import asr.proyectoFinal.services.TextoToAudio; 
 import java.util.Collection;
 /**
  * Servlet implementation class Controller
  */
-@WebServlet(urlPatterns = {"/listar", "/insertar", "/traducir","/analizar"})
+@WebServlet(urlPatterns = {"/listar", "/insertar", "/traducir", "/analizar", "/reproducir"})
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -82,7 +83,15 @@ public class Controller extends HttpServlet {
 				Collection<Palabra> coleccion2 = store.getAll();
 				String resultado2 =coleccion2.toString();	
 				out.println(resultado2);
-			break;			
+			break; 
+				
+			case "/reproducir":
+				String audio = request.getParameter("mensaje");
+				// String out1 = TextoToAudio.reproducirAudio("hola");
+				out.println("hola");
+			break;		
+			
+			
 		}
 		//out.println("</div>");
 	}
