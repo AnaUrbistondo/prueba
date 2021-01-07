@@ -12,11 +12,15 @@ import java.nio.Buffer;
 import java.nio.file.Files;
 import java.util.List;
 
+import javax.print.attribute.standard.Media;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.FileUtils;
 
 import com.ibm.cloud.sdk.core.service.exception.NotFoundException;
 import com.ibm.cloud.sdk.core.service.exception.RequestTooLargeException;
@@ -87,8 +91,26 @@ public class Controller extends HttpServlet {
 				
 			case "/reproducir":
 				String audio = request.getParameter("mensaje");
-				String out1 = TextoToAudio.reproducirAudio("hola");
-				out.println(out1);
+				//TextoToAudio.reproducirAudio("hola");
+				//File audioFile = new File("./audio/hello.wav");
+				//FileUtils.copyInputStreamToFile(out1, audioFile);
+				//out.println(out1);
+				//quiz = (Quiz) request.getSession().getAttribute("quiz");
+			    //SelectedLanguage selectedLanguage = (SelectedLanguage) request.getSession().getAttribute("selectedLanguage");
+
+			    //int questionId = Integer.parseInt(request.getParameter("q"));
+			    //String question = quiz.getQuestions().get(questionId).getQuestion();
+
+				ServletContext servletContext = getServletContext();
+			    TextoToAudio.reproducir(audio, servletContext.getRealPath("/")+"/media/hello_world.mp3");
+			      
+			      
+			      //response.getOutputStream().write(bytes);
+			      
+			      //response.getOutputStream().flush();
+			      //response.getOutputStream().close();
+			      out.println(servletContext.getRealPath("/")+"/media/hello_world.mp3");
+			     
 			break;		
 			
 			

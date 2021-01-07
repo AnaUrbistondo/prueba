@@ -69,15 +69,38 @@
 		
 		function pulsado4()
 		{
+			var msgn = document.getElementById("mensaje").value; 
+			var audio = document.getElementById("audioPlay");
 			var dataEnvio = $("#idForm").serialize();
-			$.get('reproducir',dataEnvio, function(data3)
-				{
-				     alert(data3);
-					 out.println(data3);
-			         #('#audioName').src = data3;
-			         $('#audio').load();
-			         $('#audio').play(); 
-				});
+			
+			//alert("reproducir?mensaje="+msgn);
+			//audio.src="reproducir?mensaje="+msgn;
+			
+			$.get('reproducir', $("#idForm").serialize(), function(data4)
+					{
+						alert(data4); 
+	
+						//$('#audioPlay').src=data4;
+						//$("#audioPlay").load();
+						//$('#audioPlay').play();
+					});
+			//var audio = document.createElement('audio');
+			//audio.setAttribute('src','media/hello_world.mp3');
+			//audio.setAttribute('type','audio/mpeg');
+			audio.load();
+			audio.play();
+
+			
+			/*
+			
+			
+			$.get('reproducir',dataEnvio
+			
+			*/
+			
+			
+			
+			 
 		}
 		function nombreUser()
 		{
@@ -114,9 +137,17 @@
 				<button class="btn btn-primary" id ="btn_add"  onclick="pulsado(); return false" data-ignore="push"> <i class="material-icons">send</i> </button>
 				<button class="btn btn-primary" id ="btn_add2" onclick="pulsado3(); return false" data-ignore="push"><i class="material-icons">translate</i></button>
 				<button class="btn btn-primary" id ="btn_add3" onclick="pulsado2(); return false" data-ignore="push"> NLP</button>
-				<button class="btn btn-primary" id ="btn_add4" onclick="pulsado4(); return false" data-ignore="push"> <i class="material-icons">mic</i></button>
+				<button class="btn btn-primary" id ="btn_add4" onclick="pulsado4();return false" data-ignore="push"> <i class="material-icons">mic</i></button>
+				
 				</span>
 			</div>	
+			
+			<div> 
+				<audio controls id="audioPlay" autoplay>
+					<source src="media/hello_world.mp3" type="audio/mpeg">
+				</audio>
+			
+			</div>
 		</form>
 	</div>
 		<!-- 
@@ -130,11 +161,7 @@
 		</ul>
 		 -->
 	
-	<div>
-		<audio controls id="audio" hidden="true">
-			<source id="audioName" type="audio/wav">
-		</audio>
-	</div>
+
 	
 </body>
 </html>
