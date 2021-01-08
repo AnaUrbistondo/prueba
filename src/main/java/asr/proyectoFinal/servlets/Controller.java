@@ -102,14 +102,21 @@ public class Controller extends HttpServlet {
 			    //String question = quiz.getQuestions().get(questionId).getQuestion();
 
 				ServletContext servletContext = getServletContext();
-			    TextoToAudio.reproducir(audio, servletContext.getRealPath("/")+"/media/hello_world.mp3");
+				
 			      
+			      try {
+			    	  byte[] bytes= TextoToAudio.reproducir(audio, servletContext.getRealPath("/")+"media/hello_world.mp3");
+			    	  response.getOutputStream().write(bytes);
+
+			      } catch(IOException e)
+			      {
+			    	  e.printStackTrace();
+			      }
 			      
-			      //response.getOutputStream().write(bytes);
-			      
-			      //response.getOutputStream().flush();
-			      //response.getOutputStream().close();
-			      out.println(servletContext.getRealPath("/")+"/media/hello_world.mp3");
+			    //response.getOutputStream().flush();
+			    
+			    //response.getOutputStream().close();
+			    //out.println("Audio"); 
 			     
 			break;		
 			

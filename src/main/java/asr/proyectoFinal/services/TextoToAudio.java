@@ -21,13 +21,15 @@ import com.ibm.watson.text_to_speech.v1.util.WaveUtils;
 
 public class TextoToAudio
 {
-	public static void reproducir(String frase, String path)
+	public static byte[] reproducir(String frase, String path)
 	{
 		IamAuthenticator authenticator = new IamAuthenticator("cF5DgSlI1iA75KwQ9T6_y6vbqyADpcVDxQ3sZGK8AdAc");
 		TextToSpeech textToSpeech = new TextToSpeech(authenticator);
 		textToSpeech.setServiceUrl("https://api.eu-gb.text-to-speech.watson.cloud.ibm.com/instances/d9225fe6-7591-49f5-a4a0-ddc45ee06687");
 		HttpConfigOptions configOptions = new HttpConfigOptions.Builder().disableSslVerification(true).build();
 		textToSpeech.configureClient(configOptions);
+		
+		byte[] bytes = null; 
 		try {
 			  SynthesizeOptions synthesizeOptions =
 			    new SynthesizeOptions.Builder()
@@ -43,6 +45,8 @@ public class TextoToAudio
 			    textToSpeech.synthesize(synthesizeOptions).execute().getResult();
 			  InputStream in = WaveUtils.reWriteWaveHeader(inputStream);
 			  
+			  bytes = WaveUtils.toByteArray(inputStream);
+			  
 			  OutputStream out = new FileOutputStream(path);
 			  byte[] buffer = new byte[1024];
 			  int length;
@@ -56,5 +60,7 @@ public class TextoToAudio
 			} catch (IOException e) {
 			  e.printStackTrace();
 			}
+		
+		return bytes; 
 	}
 }

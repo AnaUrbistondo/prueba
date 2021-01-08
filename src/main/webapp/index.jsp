@@ -73,9 +73,10 @@
 			var audio = document.getElementById("audioPlay");
 			var dataEnvio = $("#idForm").serialize();
 			
+			$("#idForm").submit();
 			//alert("reproducir?mensaje="+msgn);
 			//audio.src="reproducir?mensaje="+msgn;
-			
+			/*
 			$.get('reproducir', $("#idForm").serialize(), function(data4)
 					{
 						alert(data4); 
@@ -84,7 +85,8 @@
 						//$("#audioPlay").load();
 						//$('#audioPlay').play();
 					});
-			//var audio = document.createElement('audio');
+			var audio = document.createElement('audio');
+			*/ 
 			//audio.setAttribute('src','media/hello_world.mp3');
 			//audio.setAttribute('type','audio/mpeg');
 			audio.load();
@@ -120,7 +122,7 @@
 <body  onload="nombreUser();" style ="background-color:#d8f0fb">
 	<center>
 	<h1> Practica Final ASR </h1>
-	<h2>Ana Urbistondo y Alberto Colino</h2>
+	<h2>Alberto Colino y Ana Urbistondo</h2>
 	</center>
 	<hr />
 	<div style ="margin-left:10%; margin-right:15%;width:85%;">
@@ -129,9 +131,9 @@
 			
 			<textarea style ="width:40%; display:inline-block" rows="20" cols="10" id="caja2"></textarea> 
 		</div>	
-		<form method ="GET" action ="insertar" id ="idForm">
+		<form method ="GET" action ="reproducir" id ="idForm">
 		<br>
-			<div >
+			<div id="idForm">
 				<span style="display: inline-block!;width: 100%;text-align: center;">
 				<input   style="width: 60%" type="text" id ="mensaje" name ="mensaje" placeholder="mensaje">
 				<button class="btn btn-primary" id ="btn_add"  onclick="pulsado(); return false" data-ignore="push"> <i class="material-icons">send</i> </button>
@@ -143,11 +145,13 @@
 			</div>	
 			
 			<div> 
-				<audio controls id="audioPlay" autoplay>
-					<source src="media/hello_world.mp3" type="audio/mpeg">
+				<audio controls id="audioPlay" preload="auto">
+					<source src="reproducir?mensaje="<%=request.getParameter("mensaje") %> type="audio/mpeg">
 				</audio>
 			
 			</div>
+			
+			
 		</form>
 	</div>
 		<!-- 
