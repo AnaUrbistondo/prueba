@@ -73,35 +73,21 @@
 			var audio = document.getElementById("audioPlay");
 			var dataEnvio = $("#idForm").serialize();
 			
-			$("#idForm").submit();
 			//alert("reproducir?mensaje="+msgn);
 			//audio.src="reproducir?mensaje="+msgn;
-			/*
+			
 			$.get('reproducir', $("#idForm").serialize(), function(data4)
 					{
 						alert(data4); 
-	
-						//$('#audioPlay').src=data4;
+						var audio = document.getElementById('audioPlay');
+						
+						$('#audioPlay').css('display','block');
 						//$("#audioPlay").load();
 						//$('#audioPlay').play();
+						audio.setAttribute('src','reproducir?mensaje='+ $('#mensaje').val());
+						audio.load();
+						audio.play();
 					});
-			var audio = document.createElement('audio');
-			*/ 
-			//audio.setAttribute('src','media/hello_world.mp3');
-			//audio.setAttribute('type','audio/mpeg');
-			audio.load();
-			audio.play();
-
-			
-			/*
-			
-			
-			$.get('reproducir',dataEnvio
-			
-			*/
-			
-			
-			
 			 
 		}
 		function nombreUser()
@@ -131,9 +117,9 @@
 			
 			<textarea style ="width:40%; display:inline-block" rows="20" cols="10" id="caja2"></textarea> 
 		</div>	
-		<form method ="GET" action ="reproducir" id ="idForm">
+		<form method ="GET" action ="insertar" id ="idForm">
 		<br>
-			<div id="idForm">
+			<div>
 				<span style="display: inline-block!;width: 100%;text-align: center;">
 				<input   style="width: 60%" type="text" id ="mensaje" name ="mensaje" placeholder="mensaje">
 				<button class="btn btn-primary" id ="btn_add"  onclick="pulsado(); return false" data-ignore="push"> <i class="material-icons">send</i> </button>

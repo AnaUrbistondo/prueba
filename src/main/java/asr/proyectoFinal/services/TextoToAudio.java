@@ -26,25 +26,24 @@ public class TextoToAudio
 		IamAuthenticator authenticator = new IamAuthenticator("cF5DgSlI1iA75KwQ9T6_y6vbqyADpcVDxQ3sZGK8AdAc");
 		TextToSpeech textToSpeech = new TextToSpeech(authenticator);
 		textToSpeech.setServiceUrl("https://api.eu-gb.text-to-speech.watson.cloud.ibm.com/instances/d9225fe6-7591-49f5-a4a0-ddc45ee06687");
-		HttpConfigOptions configOptions = new HttpConfigOptions.Builder().disableSslVerification(true).build();
-		textToSpeech.configureClient(configOptions);
+		//HttpConfigOptions configOptions = new HttpConfigOptions.Builder().disableSslVerification(true).build();
+		//textToSpeech.configureClient(configOptions);
 		
 		byte[] bytes = null; 
-		try {
-			  SynthesizeOptions synthesizeOptions =
-			    new SynthesizeOptions.Builder()
+		
+		 SynthesizeOptions synthesizeOptions = new SynthesizeOptions.Builder()
 			      .text(frase)
 			      .accept("audio/mp3")
-			      .voice("en-US_AllisonVoice")
+			      .voice("en-GB_CharlotteV3Voice")
 			      .build();
-			  
-			  
-			  System.out.println(path);
-			  
-			  InputStream inputStream =
-			    textToSpeech.synthesize(synthesizeOptions).execute().getResult();
-			  InputStream in = WaveUtils.reWriteWaveHeader(inputStream);
-			  
+		  
+		  
+		  //System.out.println(path);
+		  
+		  InputStream inputStream = textToSpeech.synthesize(synthesizeOptions).execute().getResult();
+		  /*
+		  try {
+			  InputStream in = WaveUtils.reWriteWaveHeader(inputStream);  
 			  bytes = WaveUtils.toByteArray(inputStream);
 			  
 			  OutputStream out = new FileOutputStream(path);
@@ -60,7 +59,27 @@ public class TextoToAudio
 			} catch (IOException e) {
 			  e.printStackTrace();
 			}
+			*/
+		  try {
+		      bytes = WaveUtils.toByteArray(inputStream);
+		    } catch (IOException e) {
+		      e.printStackTrace();
+		    } finally {
+		      try {
+		        inputStream.close();
+		      } catch (IOException e) {
+		        e.printStackTrace();
+		      }
+		    }
 		
-		return bytes; 
+		//return bytes;
+		  
+		  /*
+		   String palabra = "hola";
+		   
+		  byte[] bytes2 = palabra.getBytes();
+		  return bytes2;
+		  */
+		  return bytes;
 	}
 }

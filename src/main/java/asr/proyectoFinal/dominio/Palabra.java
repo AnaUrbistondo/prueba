@@ -1,4 +1,5 @@
 /*
+ /*
  * Copyright IBM Corp. 2017
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,7 +20,7 @@ package asr.proyectoFinal.dominio;
  * Represents a Visitor document stored in Cloudant.
  */
 
-public class Palabra {
+public class Palabra implements Comparable{
 	private String _id;
 	private String _rev;
 	private String name = null;
@@ -89,6 +90,14 @@ public class Palabra {
 	public String toString()
 	{
 		return name + "\n";
+	}
+	@Override
+	public int compareTo(Object o) {
+		Palabra pal = (Palabra)o;
+		int diferencia =  Integer.parseInt(pal.getName().substring(0,pal.getName().indexOf("#")));
+		int valor =  Integer.parseInt(this.getName().substring(0,this.getName().indexOf("#")));
+        /* For Ascending order*/
+        return valor-diferencia;
 	}
 
 }
